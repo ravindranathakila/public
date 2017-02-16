@@ -1,0 +1,2 @@
+https://www.linkedin.com/pulse/why-sri-lanka-never-singapore-eranda-ginige 
+[A good read in comparing Sri Lanka with other nations](https://www.linkedin.com/pulse/why-sri-lanka-never-singapore-eranda-ginige)
