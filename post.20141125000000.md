@@ -1,4 +1,5 @@
-It was your idea after
+It was your idea after 
+======================
 
 One of the key traits a manager could have is the ability to have a team member believe the given idea in implementation is his.
 
