@@ -1,4 +1,5 @@
-## Opening the gates to a true search (engine)
+Opening the gates to a true search (engine)
+===========================================
 
 GATES, AND OR NOT, are used to communicate logic using High and Low (Binary) format.
 
