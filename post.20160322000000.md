@@ -1,4 +1,5 @@
-Taming Your Classes
+Taming Your Classes 
+===================
 
 Is that class turning into Behemoth out of control? Maybe this would help in certain cases. This is Single Responsibility Principle as explained in Wikipedia:
 
