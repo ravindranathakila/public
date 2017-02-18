@@ -3,8 +3,9 @@ Thinking in Big Data Processing
 
 The IBM three V's 
 * How much data volume do you have? 
-How much data velocity do you have? 
-How much data variety do you have? 
+* How much data velocity do you have? 
+* How much data variety do you have? 
+--------------------------------------
 
 * How do you track your data processing jobs? 
 * What are the transactional requirements of your data processing job tracking? 
