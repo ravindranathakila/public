@@ -1,77 +1,80 @@
 {
+  "base": {
+    "http": "https://raw.githubusercontent.com/ravindranathakila/public/master/"
+  },
   "files": [
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170218165000.md",
+      "name": "post.20170218165000.md",
       "title": "Thinking in Tech",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170218120400.md",
+      "name": "post.20170218120400.md",
       "title": "Thinking in Big Data Processing",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170217222800.md",
+      "name": "post.20170217222800.md",
       "title": "Thinking Data Storage",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170217221400.md",
+      "name": "post.20170217221400.md",
       "title": "Simple tips on becoming a good software developer",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170217123000.md",
+      "name": "post.20170217123000.md",
       "title": "Best Practices: AWS Identity Access Management (IAM)",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20140711000000.md",
+      "name": "post.20140711000000.md",
       "title": "We don't have much time",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20141125000000.md",
+      "name": "post.20141125000000.md",
       "title": "It was your idea after",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20150719000000.md",
+      "name": "post.20150719000000.md",
       "title": "The Sell",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20150725000000.md",
+      "name": "post.20150725000000.md",
       "title": "The burden of Big Data",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20140307000000.md",
+      "name": "post.20140307000000.md",
       "title": "Are you special?",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20160314000000.md",
+      "name": "post.20160314000000.md",
       "title": "On Carrot and Stick Mentality",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20160322000000.md",
+      "name": "post.20160322000000.md",
       "title": "Taming Your Classes",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170208000000.md",
+      "name": "post.20170208000000.md",
       "title": "On Artificial Intelligence",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170211000000.md",
+      "name": "post.20170211000000.md",
       "title": "Watermarks in Streaming",
       "description": ""
     },
     {
-      "name": "https://raw.githubusercontent.com/ravindranathakila/public/master/post.20170212000000.md",
+      "name": "post.20170212000000.md",
       "title": "Opening the gates to a true search (engine)",
       "description": ""
     }
