@@ -4,13 +4,19 @@
   },
   "files": [
     {
+      "name": "post.20170217222800.md",
+      "title": "Thinking Quwues",
+      "description": ""
+    },
+    
+    {
       "name": "post.20170218165000.md",
-      "title": "Thinking in Tech",
+      "title": "Thinking Tech",
       "description": ""
     },
     {
       "name": "post.20170218120400.md",
-      "title": "Thinking in Big Data Processing",
+      "title": "Thinking Big Data Processing",
       "description": ""
     },
     {
@@ -25,7 +31,7 @@
     },
     {
       "name": "post.20170217123000.md",
-      "title": "Best Practices: AWS Identity Access Management (IAM)",
+      "title": "Thinking Identity Access Management (IAM)",
       "description": ""
     },
     {
