@@ -1,4 +1,4 @@
-Thinking in Big Data Processing 
+Thinking Big Data Processing 
 ===============================
 
 The IBM three V's 

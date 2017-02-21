@@ -1,4 +1,4 @@
-Thinking in Tech 
+Thinking Tech 
 ================
 
 * Do all your team members know which components of the tech infrastructure cost most? 
