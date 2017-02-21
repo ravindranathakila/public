@@ -1,4 +1,4 @@
-Thinking Data Storage 
+Thinking Big Data Storage 
 =====================
 
 How much data do you have? 
@@ -11,3 +11,7 @@ Which one of the following are you open to losing in terms of storage access and
 
 The ACID requirements 
 Is your data transactional? 
+
+Is your database sparse? 
+
+Do you plan to aggregate data? Would you like to have OLAP? 
