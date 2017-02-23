@@ -1,6 +1,8 @@
 Are you special? 
 ================
 
-One of the best advice I've got is by a colleague who was intriguing and hard to work with given his laser sharp focus on goals and no tolerance for beating about the bush or chit chat. He told me,
+One of the best advice I've got was from a very talented colleague with the ability to understand the high-level technical implications of projects very fast. He used to tell me, 
 
 "You're not special; you know?"
+
+These words have great depth and is similar to "Stay hungry, stay foolish".
