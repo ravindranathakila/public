@@ -3,7 +3,8 @@ Can you code in Singlish?
 I believe Singlish is very efficient in simple communication, so I thought it would make a good programming language. Let's see ;)
 
 Sing++ 
-------
+------ 
+
 scanf - LAI 
 if - HAVE 
 else if - ALSO HAVE 
@@ -18,6 +19,7 @@ ternary : - ORNOT
 
 Lessons1.sing 
 ------------- 
+<code> 
 
 LAI something // prompt 
 (user input "money")
@@ -50,6 +52,8 @@ ALREADY ( time < 5)
 LA 
 
 today = work CAN "go office" ORNOT "mc" 
+
+</code>
 
 Note 1: Sri Lankans use Singlish to call Sinhala + Enlgish, but here that isn't the context! 
 
