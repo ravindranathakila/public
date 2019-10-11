@@ -1,4 +1,3 @@
-// Place your key bindings in this file to override the defaults
 [
     {
         "key": "alt+i",
@@ -31,8 +30,18 @@
         "when": "editorTextFocus"
     },
     {
+        "key": "ctrl+j",
+        "command": "cursorWordPartLeft",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "alt+j",
         "command": "cursorLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "cursorWordPartRight",
         "when": "editorTextFocus"
     },
     {
