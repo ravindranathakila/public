@@ -1,3 +1,4 @@
+// Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "cmd+i",
@@ -60,5 +61,9 @@
         "key": "ctrl+f",
         "command": "-cursorRight",
         "when": "textInputFocus"
-    }
+    },    
+    {
+        "key": "ctrl+i",
+        "command": "workbench.action.showCommands"
+    },
 ]
