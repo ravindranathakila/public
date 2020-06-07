@@ -7,4 +7,7 @@
     <option name="CALL_PARAMETERS_WRAP" value="2" />
     <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
   </codeStyleSettings>
+  <codeStyleSettings language="yaml">
+    <option name="KEEP_LINE_BREAKS" value="false" />
+  </codeStyleSettings>
 </code_scheme>
