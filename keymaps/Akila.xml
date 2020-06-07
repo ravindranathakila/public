@@ -1,0 +1,327 @@
+<keymap version="1" name="Akila" parent="NetBeans 6.5">
+  <action id="$Copy">
+    <keyboard-shortcut first-keystroke="ctrl c" />
+    <keyboard-shortcut first-keystroke="meta c" />
+  </action>
+  <action id="$Delete">
+    <keyboard-shortcut first-keystroke="delete" />
+    <keyboard-shortcut first-keystroke="meta back_space" />
+  </action>
+  <action id="$Paste">
+    <keyboard-shortcut first-keystroke="ctrl v" />
+    <keyboard-shortcut first-keystroke="meta v" />
+  </action>
+  <action id="ActivateChangesToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl 3" />
+  </action>
+  <action id="ActivateDebugToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl 4" />
+  </action>
+  <action id="ActivateMessagesToolWindow" />
+  <action id="ActivateProjectToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl 1" />
+    <keyboard-shortcut first-keystroke="meta p" />
+  </action>
+  <action id="ActivateRunToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl 2" />
+  </action>
+  <action id="ActivateStructureToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl 7" />
+    <keyboard-shortcut first-keystroke="alt 7" />
+    <keyboard-shortcut first-keystroke="ctrl 5" />
+  </action>
+  <action id="AutoIndentLines" />
+  <action id="Back">
+    <keyboard-shortcut first-keystroke="alt left" />
+    <mouse-shortcut keystroke="button4" />
+    <keyboard-shortcut first-keystroke="alt 9" />
+    <keyboard-shortcut first-keystroke="meta 9" />
+  </action>
+  <action id="ChangesView.SetDefault" />
+  <action id="ClassNameCompletion">
+    <keyboard-shortcut first-keystroke="ctrl alt back_slash" />
+  </action>
+  <action id="CloseEditor">
+    <keyboard-shortcut first-keystroke="shift meta w" />
+  </action>
+  <action id="CloseProject">
+    <keyboard-shortcut first-keystroke="meta x" />
+  </action>
+  <action id="Console.Jdbc.Execute" />
+  <action id="Console.Jpa.Execute" />
+  <action id="Console.SplitLine" />
+  <action id="Console.TableResult.NavigateForeignAction">
+    <keyboard-shortcut first-keystroke="ctrl b" />
+    <mouse-shortcut keystroke="control button1" />
+    <keyboard-shortcut first-keystroke="alt f" />
+    <keyboard-shortcut first-keystroke="meta f" />
+  </action>
+  <action id="DuplicatesForm.SendToLeft" />
+  <action id="DuplicatesForm.SendToRight" />
+  <action id="Editor Copy">
+    <keyboard-shortcut first-keystroke="meta c" />
+  </action>
+  <action id="Editor Delete">
+    <keyboard-shortcut first-keystroke="meta back_space" />
+  </action>
+  <action id="Editor Paste">
+    <keyboard-shortcut first-keystroke="meta v" />
+  </action>
+  <action id="EditorChooseLookupItemAlways" />
+  <action id="EditorCompleteStatement">
+    <keyboard-shortcut first-keystroke="shift ctrl enter" />
+  </action>
+  <action id="EditorDown">
+    <keyboard-shortcut first-keystroke="down" />
+    <keyboard-shortcut first-keystroke="alt k" />
+    <keyboard-shortcut first-keystroke="meta k" />
+  </action>
+  <action id="EditorDownWithSelection">
+    <keyboard-shortcut first-keystroke="shift down" />
+    <keyboard-shortcut first-keystroke="shift ctrl quote" />
+    <keyboard-shortcut first-keystroke="shift meta period" />
+  </action>
+  <action id="EditorLeft">
+    <keyboard-shortcut first-keystroke="left" />
+    <keyboard-shortcut first-keystroke="alt j" />
+    <keyboard-shortcut first-keystroke="meta j" />
+  </action>
+  <action id="EditorLeftWithSelection">
+    <keyboard-shortcut first-keystroke="shift left" />
+    <keyboard-shortcut first-keystroke="ctrl semicolon" />
+    <keyboard-shortcut first-keystroke="shift meta semicolon" />
+  </action>
+  <action id="EditorLineEndWithSelection">
+    <keyboard-shortcut first-keystroke="shift end" />
+    <keyboard-shortcut first-keystroke="alt close_bracket" />
+  </action>
+  <action id="EditorLineStartWithSelection">
+    <keyboard-shortcut first-keystroke="shift home" />
+    <keyboard-shortcut first-keystroke="alt open_bracket" />
+  </action>
+  <action id="EditorNextWord">
+    <keyboard-shortcut first-keystroke="ctrl right" />
+    <keyboard-shortcut first-keystroke="ctrl l" />
+  </action>
+  <action id="EditorNextWordWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl meta quote" />
+  </action>
+  <action id="EditorPreviousWord">
+    <keyboard-shortcut first-keystroke="ctrl left" />
+    <keyboard-shortcut first-keystroke="ctrl j" />
+  </action>
+  <action id="EditorPreviousWordWithSelection">
+    <keyboard-shortcut first-keystroke="shift ctrl meta semicolon" />
+  </action>
+  <action id="EditorRight">
+    <keyboard-shortcut first-keystroke="right" />
+    <keyboard-shortcut first-keystroke="alt l" />
+    <keyboard-shortcut first-keystroke="meta l" />
+  </action>
+  <action id="EditorRightWithSelection">
+    <keyboard-shortcut first-keystroke="shift right" />
+    <keyboard-shortcut first-keystroke="ctrl quote" />
+    <keyboard-shortcut first-keystroke="shift meta quote" />
+  </action>
+  <action id="EditorSplitLine" />
+  <action id="EditorToggleColumnMode">
+    <keyboard-shortcut first-keystroke="shift ctrl back_slash" />
+  </action>
+  <action id="EditorUp">
+    <keyboard-shortcut first-keystroke="up" />
+    <keyboard-shortcut first-keystroke="alt i" />
+    <keyboard-shortcut first-keystroke="meta i" />
+  </action>
+  <action id="EditorUpWithSelection">
+    <keyboard-shortcut first-keystroke="shift up" />
+    <keyboard-shortcut first-keystroke="shift ctrl semicolon" />
+    <keyboard-shortcut first-keystroke="shift meta open_bracket" />
+  </action>
+  <action id="ExtractFunctionToScope" />
+  <action id="FileChooser.GotoModule" />
+  <action id="FileChooser.GotoProject" />
+  <action id="FileChooser.ShowHiddens">
+    <keyboard-shortcut first-keystroke="shift meta h" />
+  </action>
+  <action id="FileChooser.TogglePathShowing" />
+  <action id="FileStructurePopup">
+    <keyboard-shortcut first-keystroke="ctrl f12" />
+    <keyboard-shortcut first-keystroke="shift ctrl f12" />
+    <keyboard-shortcut first-keystroke="meta s" />
+  </action>
+  <action id="FindNext">
+    <keyboard-shortcut first-keystroke="f3" />
+  </action>
+  <action id="FindUsages">
+    <keyboard-shortcut first-keystroke="alt f7" />
+    <keyboard-shortcut first-keystroke="shift ctrl alt f" />
+  </action>
+  <action id="Forward">
+    <keyboard-shortcut first-keystroke="alt right" />
+    <mouse-shortcut keystroke="button5" />
+    <keyboard-shortcut first-keystroke="alt 0" />
+    <keyboard-shortcut first-keystroke="meta 0" />
+  </action>
+  <action id="Generate">
+    <keyboard-shortcut first-keystroke="alt g" />
+    <keyboard-shortcut first-keystroke="meta g" />
+  </action>
+  <action id="GotoClass" />
+  <action id="GotoDeclaration">
+    <keyboard-shortcut first-keystroke="ctrl b" />
+    <mouse-shortcut keystroke="control button1" />
+    <keyboard-shortcut first-keystroke="alt f" />
+    <keyboard-shortcut first-keystroke="meta f" />
+  </action>
+  <action id="GotoImplementation">
+    <keyboard-shortcut first-keystroke="ctrl alt b" />
+    <mouse-shortcut keystroke="control alt button1" />
+    <keyboard-shortcut first-keystroke="alt d" />
+    <keyboard-shortcut first-keystroke="meta d" />
+  </action>
+  <action id="GotoSuperMethod">
+    <keyboard-shortcut first-keystroke="shift ctrl p" />
+    <keyboard-shortcut first-keystroke="shift alt d" />
+    <keyboard-shortcut first-keystroke="shift meta d" />
+  </action>
+  <action id="GotoSymbol">
+    <keyboard-shortcut first-keystroke="shift ctrl alt o" />
+    <keyboard-shortcut first-keystroke="ctrl o" />
+    <keyboard-shortcut first-keystroke="shift meta o" />
+  </action>
+  <action id="Graph.Print" />
+  <action id="Groovy.Shell.Execute" />
+  <action id="Images.Editor.ToggleGrid" />
+  <action id="InsertLiveTemplate" />
+  <action id="IntroduceVariable">
+    <keyboard-shortcut first-keystroke="shift alt v" />
+    <keyboard-shortcut first-keystroke="ctrl enter" />
+  </action>
+  <action id="MinimizeCurrentWindow">
+    <keyboard-shortcut first-keystroke="ctrl m" />
+  </action>
+  <action id="Move" />
+  <action id="NewFile">
+    <keyboard-shortcut first-keystroke="meta n" />
+  </action>
+  <action id="NextTab">
+    <keyboard-shortcut first-keystroke="ctrl page_down" />
+    <keyboard-shortcut first-keystroke="ctrl alt k" />
+    <keyboard-shortcut first-keystroke="ctrl meta k" />
+  </action>
+  <action id="OpenFile">
+    <keyboard-shortcut first-keystroke="shift ctrl o" />
+    <keyboard-shortcut first-keystroke="meta o" />
+  </action>
+  <action id="OpenInBrowser">
+    <keyboard-shortcut first-keystroke="shift ctrl alt b" />
+  </action>
+  <action id="OptimizeImports" />
+  <action id="ParameterInfo" />
+  <action id="PreviousTab">
+    <keyboard-shortcut first-keystroke="ctrl page_up" />
+    <keyboard-shortcut first-keystroke="ctrl alt i" />
+    <keyboard-shortcut first-keystroke="ctrl meta i" />
+  </action>
+  <action id="Print" />
+  <action id="RearrangeCode">
+    <keyboard-shortcut first-keystroke="ctrl meta r" />
+  </action>
+  <action id="RecentProjectListGroup">
+    <keyboard-shortcut first-keystroke="ctrl meta o" />
+  </action>
+  <action id="Refactorings.QuickListPopupAction">
+    <keyboard-shortcut first-keystroke="shift ctrl alt t" />
+    <keyboard-shortcut first-keystroke="ctrl r" />
+  </action>
+  <action id="ReformatCode">
+    <keyboard-shortcut first-keystroke="shift alt f" />
+    <keyboard-shortcut first-keystroke="shift meta f" />
+  </action>
+  <action id="RenameElement" />
+  <action id="Rerun">
+    <keyboard-shortcut first-keystroke="shift meta t" />
+  </action>
+  <action id="Run">
+    <keyboard-shortcut first-keystroke="f6" />
+    <keyboard-shortcut first-keystroke="alt r" />
+  </action>
+  <action id="SearchEverywhere">
+    <keyboard-shortcut first-keystroke="shift ctrl i" />
+    <keyboard-shortcut first-keystroke="shift meta i" />
+  </action>
+  <action id="SelectNextOccurrence" />
+  <action id="ShelvedChanges.Rename" />
+  <action id="ShowIntentionActions">
+    <keyboard-shortcut first-keystroke="alt enter" />
+    <keyboard-shortcut first-keystroke="meta enter" />
+  </action>
+  <action id="ShowNavBar">
+    <keyboard-shortcut first-keystroke="alt home" />
+    <keyboard-shortcut first-keystroke="ctrl p" />
+  </action>
+  <action id="ShowPopupMenu">
+    <keyboard-shortcut first-keystroke="context_menu" />
+    <keyboard-shortcut first-keystroke="shift f10" />
+    <keyboard-shortcut first-keystroke="meta close_bracket" />
+  </action>
+  <action id="SmartTypeCompletion">
+    <keyboard-shortcut first-keystroke="shift ctrl space" />
+  </action>
+  <action id="SwitchApply">
+    <keyboard-shortcut first-keystroke="ctrl alt enter" />
+  </action>
+  <action id="SwitchDown">
+    <keyboard-shortcut first-keystroke="ctrl alt down" />
+  </action>
+  <action id="SwitchLeft">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+  </action>
+  <action id="SwitchRight">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+  </action>
+  <action id="SwitchUp">
+    <keyboard-shortcut first-keystroke="ctrl alt up" />
+  </action>
+  <action id="Switcher">
+    <keyboard-shortcut first-keystroke="ctrl tab" />
+    <keyboard-shortcut first-keystroke="shift ctrl tab" />
+    <keyboard-shortcut first-keystroke="alt m" />
+  </action>
+  <action id="TabList">
+    <keyboard-shortcut first-keystroke="meta t" />
+  </action>
+  <action id="ToggleBookmark">
+    <keyboard-shortcut first-keystroke="meta b" />
+  </action>
+  <action id="ToggleFloatingMode" />
+  <action id="TogglePresentationMode">
+    <keyboard-shortcut first-keystroke="shift ctrl alt p" />
+    <keyboard-shortcut first-keystroke="shift ctrl alt m" />
+    <keyboard-shortcut first-keystroke="meta back_slash" />
+  </action>
+  <action id="ToolWindowsGroup">
+    <keyboard-shortcut first-keystroke="meta w" />
+  </action>
+  <action id="UnselectPreviousOccurrence" />
+  <action id="Vcs.QuickListPopupAction">
+    <keyboard-shortcut first-keystroke="alt back_quote" />
+    <keyboard-shortcut first-keystroke="meta 1" />
+    <keyboard-shortcut first-keystroke="alt 1" />
+  </action>
+  <action id="Vcs.ShowMessageHistory">
+    <keyboard-shortcut first-keystroke="shift f4" />
+  </action>
+  <action id="Vcs.UpdateProject">
+    <keyboard-shortcut first-keystroke="shift meta u" />
+  </action>
+  <action id="ViewSource" />
+  <action id="com.vladsch.idea.multimarkdown.editor.actions.styling.ToggleCodeSpanAction" />
+  <action id="context.load" />
+  <action id="jetbrains.mps.idea.build.GenerateModuleInProcessAction">
+    <keyboard-shortcut first-keystroke="meta m" />
+  </action>
+  <action id="org.jetbrains.plugins.terminal.OpenLocalTerminalAction">
+    <keyboard-shortcut first-keystroke="ctrl t" />
+  </action>
+</keymap>

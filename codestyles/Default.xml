@@ -1,0 +1,10 @@
+<code_scheme name="Default" version="173">
+  <JavaCodeStyleSettings>
+    <option name="GENERATE_FINAL_LOCALS" value="true" />
+    <option name="GENERATE_FINAL_PARAMETERS" value="true" />
+  </JavaCodeStyleSettings>
+  <codeStyleSettings language="JAVA">
+    <option name="CALL_PARAMETERS_WRAP" value="2" />
+    <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
+  </codeStyleSettings>
+</code_scheme>

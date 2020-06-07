@@ -1,0 +1,11 @@
+<application>
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bb5bf4a1-225a-4578-8f4e-47a585e5bf44" name="nuc" url="http://192.168.1.148">
+        <fileTransfer host="192.168.1.148" port="22" rootFolder="/home/ravindranathakila" accessType="SFTP">
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,7 @@
+<application>
+  <component name="UISettings">
+    <option name="EDITOR_TAB_LIMIT" value="100" />
+    <option name="MAX_LOOKUP_WIDTH2" value="689" />
+    <option name="PRESENTATION_MODE_FONT_SIZE" value="20" />
+  </component>
+</application>
