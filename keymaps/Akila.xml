@@ -37,10 +37,6 @@
     <keyboard-shortcut first-keystroke="alt 9" />
     <keyboard-shortcut first-keystroke="meta 9" />
   </action>
-  <action id="ChangesView.SetDefault" />
-  <action id="ClassNameCompletion">
-    <keyboard-shortcut first-keystroke="ctrl alt back_slash" />
-  </action>
   <action id="CloseEditor">
     <keyboard-shortcut first-keystroke="shift meta w" />
   </action>
@@ -67,6 +63,9 @@
   <action id="Editor Paste">
     <keyboard-shortcut first-keystroke="meta v" />
   </action>
+  <action id="EditorBackSpace">
+    <keyboard-shortcut first-keystroke="back_space" />
+  </action>
   <action id="EditorChooseLookupItemAlways" />
   <action id="EditorCompleteStatement">
     <keyboard-shortcut first-keystroke="shift ctrl enter" />
@@ -80,6 +79,9 @@
     <keyboard-shortcut first-keystroke="shift down" />
     <keyboard-shortcut first-keystroke="shift ctrl quote" />
     <keyboard-shortcut first-keystroke="shift meta period" />
+  </action>
+  <action id="EditorEnter">
+    <keyboard-shortcut first-keystroke="enter" />
   </action>
   <action id="EditorLeft">
     <keyboard-shortcut first-keystroke="left" />
@@ -103,15 +105,9 @@
     <keyboard-shortcut first-keystroke="ctrl right" />
     <keyboard-shortcut first-keystroke="ctrl l" />
   </action>
-  <action id="EditorNextWordWithSelection">
-    <keyboard-shortcut first-keystroke="shift ctrl meta quote" />
-  </action>
   <action id="EditorPreviousWord">
     <keyboard-shortcut first-keystroke="ctrl left" />
     <keyboard-shortcut first-keystroke="ctrl j" />
-  </action>
-  <action id="EditorPreviousWordWithSelection">
-    <keyboard-shortcut first-keystroke="shift ctrl meta semicolon" />
   </action>
   <action id="EditorRight">
     <keyboard-shortcut first-keystroke="right" />
