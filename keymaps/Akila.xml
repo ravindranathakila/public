@@ -17,6 +17,10 @@
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="ctrl 4" />
   </action>
+  <action id="ActivateLogcatToolWindow">
+    <keyboard-shortcut first-keystroke="alt 6" />
+    <keyboard-shortcut first-keystroke="ctrl 6" />
+  </action>
   <action id="ActivateMessagesToolWindow" />
   <action id="ActivateProjectToolWindow">
     <keyboard-shortcut first-keystroke="ctrl 1" />
@@ -30,6 +34,7 @@
     <keyboard-shortcut first-keystroke="alt 7" />
     <keyboard-shortcut first-keystroke="ctrl 5" />
   </action>
+  <action id="ActivateTODOToolWindow" />
   <action id="AutoIndentLines" />
   <action id="Back">
     <keyboard-shortcut first-keystroke="alt left" />
