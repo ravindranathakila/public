@@ -321,6 +321,12 @@
     <keyboard-shortcut first-keystroke="shift meta u" />
   </action>
   <action id="ViewSource" />
+  <action id="android.deploy.ApplyChanges">
+    <keyboard-shortcut first-keystroke="ctrl meta e" />
+  </action>
+  <action id="android.deploy.CodeSwap">
+    <keyboard-shortcut first-keystroke="shift ctrl meta e" />
+  </action>
   <action id="com.vladsch.idea.multimarkdown.editor.actions.styling.ToggleCodeSpanAction" />
   <action id="context.load" />
   <action id="jetbrains.mps.idea.build.GenerateModuleInProcessAction">
