@@ -1,11 +1,11 @@
 <code_scheme name="Default" version="173">
-  <option name="RIGHT_MARGIN" value="512" />
+  <option name="RIGHT_MARGIN" value="10" />
   <JavaCodeStyleSettings>
     <option name="GENERATE_FINAL_LOCALS" value="true" />
     <option name="GENERATE_FINAL_PARAMETERS" value="true" />
   </JavaCodeStyleSettings>
   <codeStyleSettings language="Dart">
-    <option name="RIGHT_MARGIN" value="512" />
+    <option name="RIGHT_MARGIN" value="120" />
   </codeStyleSettings>
   <codeStyleSettings language="JAVA">
     <option name="CALL_PARAMETERS_WRAP" value="2" />
