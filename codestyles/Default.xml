@@ -5,7 +5,7 @@
     <option name="GENERATE_FINAL_PARAMETERS" value="true" />
   </JavaCodeStyleSettings>
   <codeStyleSettings language="Dart">
-    <option name="RIGHT_MARGIN" value="120" />
+    <option name="RIGHT_MARGIN" value="500" />
   </codeStyleSettings>
   <codeStyleSettings language="JAVA">
     <option name="CALL_PARAMETERS_WRAP" value="2" />
