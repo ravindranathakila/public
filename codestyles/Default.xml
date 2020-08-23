@@ -1,5 +1,5 @@
 <code_scheme name="Default" version="173">
-  <option name="RIGHT_MARGIN" value="10" />
+  <option name="RIGHT_MARGIN" value="500" />
   <JavaCodeStyleSettings>
     <option name="GENERATE_FINAL_LOCALS" value="true" />
     <option name="GENERATE_FINAL_PARAMETERS" value="true" />
@@ -7,11 +7,21 @@
   <codeStyleSettings language="Dart">
     <option name="RIGHT_MARGIN" value="500" />
   </codeStyleSettings>
+  <codeStyleSettings language="HTML">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
+  </codeStyleSettings>
   <codeStyleSettings language="JAVA">
     <option name="CALL_PARAMETERS_WRAP" value="2" />
     <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
   </codeStyleSettings>
   <codeStyleSettings language="XML">
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
     <arrangement>
       <rules>
         <section>
