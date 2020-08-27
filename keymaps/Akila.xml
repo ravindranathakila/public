@@ -259,6 +259,7 @@
   <action id="Run">
     <keyboard-shortcut first-keystroke="f6" />
     <keyboard-shortcut first-keystroke="alt r" />
+    <keyboard-shortcut first-keystroke="meta t" />
   </action>
   <action id="SearchEverywhere">
     <keyboard-shortcut first-keystroke="shift ctrl i" />
@@ -301,9 +302,6 @@
     <keyboard-shortcut first-keystroke="ctrl tab" />
     <keyboard-shortcut first-keystroke="shift ctrl tab" />
     <keyboard-shortcut first-keystroke="alt m" />
-  </action>
-  <action id="TabList">
-    <keyboard-shortcut first-keystroke="meta t" />
   </action>
   <action id="ToggleBookmark">
     <keyboard-shortcut first-keystroke="meta b" />
