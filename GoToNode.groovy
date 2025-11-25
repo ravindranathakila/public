@@ -21,9 +21,9 @@ def makeLabel = { n ->
     "${n.id}  |  ${n.text ?: ''}"
 }
 
-// store (id, label) pairs
+// store (id, label, node) pairs  <-- CHANGED: added node
 def allEntries = nodes.collect { n ->
-    [id: n.id, label: makeLabel(n)]
+    [id: n.id, label: makeLabel(n), node: n]
 }
 
 // 2. Build the autosuggest dialog
@@ -42,7 +42,7 @@ def refreshList = { String filterText ->
     String ft = (filterText ?: "").toLowerCase()
 
     allEntries.each { e ->
-        if (ft.isEmpty() || e.label.toLowerCase().contains(ft)) {
+        if (ft.isEmpty() || e.label.split("\\|")[1].toLowerCase().contains(ft)) {
             listModel.addElement(e.label)
         }
     }
@@ -50,8 +50,24 @@ def refreshList = { String filterText ->
     if (listModel.size() > 0) {
         list.setSelectedIndex(0)
         list.ensureIndexIsVisible(0)
+        // selection listener will handle preview
     }
 }
+
+// --- NEW: whenever the selection changes, preview that node ---
+list.addListSelectionListener({ e ->
+    if (e.valueIsAdjusting) return
+
+    String sel = list.getSelectedValue()
+    if (sel == null) return
+
+    def entry = allEntries.find { it.label == sel }
+    if (entry?.node) {
+        c.select(entry.node)
+        c.centerOnNode(entry.node)
+    }
+} as ListSelectionListener)
+// -----------------------------------------------------------
 
 // initial full list
 refreshList("")
