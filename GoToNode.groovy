@@ -21,7 +21,7 @@ def makeLabel = { n ->
     "${n.id}  |  ${n.text ?: ''}"
 }
 
-// store (id, label, node) pairs  <-- CHANGED: added node
+// store (id, label, node) pairs
 def allEntries = nodes.collect { n ->
     [id: n.id, label: makeLabel(n), node: n]
 }
@@ -31,19 +31,46 @@ Frame frame = UITools.getFrame()
 JDialog dialog = new JDialog(frame, "Go to node (type to filter)", true)
 dialog.setLayout(new BorderLayout())
 
+// --- NEW: make dialog background translucent ---
+dialog.setUndecorated(true)
+try {
+    dialog.setOpacity(0.85f)  // may be ignored on some platforms
+} catch (Exception ignored) { }
+dialog.setBackground(new Color(0, 0, 0, 80))
+// ----------------------------------------------
+
 JTextField field = new JTextField()
 DefaultListModel<String> listModel = new DefaultListModel<>()
 JList<String> list = new JList<>(listModel)
 list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
+
+// NEW: helper to move selection up/down
+def moveSelection = { int delta ->
+    int size = listModel.size()
+    if (size == 0) return
+    int idx = list.getSelectedIndex()
+    if (idx < 0) idx = 0
+    int newIdx = idx + delta
+    if (newIdx < 0) newIdx = 0
+    if (newIdx >= size) newIdx = size - 1
+    if (newIdx != idx) {
+        list.setSelectedIndex(newIdx)
+        list.ensureIndexIsVisible(newIdx)
+    }
+}
 
 // function to (re)populate list based on filter text
 def refreshList = { String filterText ->
     listModel.removeAllElements()
     String ft = (filterText ?: "").toLowerCase()
 
+    int added = 0                          // NEW: limit to 5 items
     allEntries.each { e ->
         if (ft.isEmpty() || e.label.split("\\|")[1].toLowerCase().contains(ft)) {
-            listModel.addElement(e.label)
+            if (added < 5) {               // NEW: enforce max 5
+                listModel.addElement(e.label)
+                added++
+            }
         }
     }
 
@@ -67,7 +94,35 @@ list.addListSelectionListener({ e ->
         c.centerOnNode(entry.node)
     }
 } as ListSelectionListener)
-// -----------------------------------------------------------
+
+// NEW: bind Cmd+Up / Cmd+Down on the text field (and list) to moveSelection
+int shortcutMask = Toolkit.defaultToolkit.menuShortcutKeyMaskEx   // Cmd on macOS
+KeyStroke ksUp   = KeyStroke.getKeyStroke(KeyEvent.VK_I,   shortcutMask)
+KeyStroke ksDown = KeyStroke.getKeyStroke(KeyEvent.VK_K, shortcutMask)
+
+// On the text field
+InputMap fim = field.getInputMap(JComponent.WHEN_FOCUSED)
+ActionMap fam = field.getActionMap()
+fim.put(ksUp,   "cmd-up")
+fim.put(ksDown, "cmd-down")
+fam.put("cmd-up",   new AbstractAction() {
+    void actionPerformed(ActionEvent e) { moveSelection(-1) }
+})
+fam.put("cmd-down", new AbstractAction() {
+    void actionPerformed(ActionEvent e) { moveSelection(1) }
+})
+
+// Also on the list itself (in case focus is there)
+InputMap lim = list.getInputMap(JComponent.WHEN_FOCUSED)
+ActionMap lam = list.getActionMap()
+lim.put(ksUp,   "cmd-up")
+lim.put(ksDown, "cmd-down")
+lam.put("cmd-up",   new AbstractAction() {
+    void actionPerformed(ActionEvent e) { moveSelection(-1) }
+})
+lam.put("cmd-down", new AbstractAction() {
+    void actionPerformed(ActionEvent e) { moveSelection(1) }
+})
 
 // initial full list
 refreshList("")
