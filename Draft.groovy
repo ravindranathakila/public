@@ -27,11 +27,9 @@ boolean includeBranch = true
 // Always send parent node?
 boolean includeParent = true
 
-// Sibling depth (0 = no siblings)
-// 1 = siblings of current node
-// 2 = + siblings of parent
-// 3 = + siblings of grandparent, etc.
-int siblingDepth = 1
+// How many parents (ancestor levels) to walk up
+// 1 = parent only, 2 = parent + grandparent, etc.
+int parentLevels = 2
 
 /****************************************************
  * HELPER FUNCTIONS
@@ -51,22 +49,41 @@ def branch = includeBranch ? current.pathToRoot*.text : []
 // Parent text (if enabled)
 def parentText = includeParent ? safeText(current.parent) : null
 
-// Collect siblings up to N ancestor levels
+// Collect siblings: for each ancestor up to parentLevels,
+// pick one sibling before and one after, plus all their children.
 List<String> siblings = []
-if (siblingDepth > 0) {
-    def levelNode = current
-    for (int d = 1; d <= siblingDepth; d++) {
-        def p = levelNode.parent
-        if (p == null) break
 
-        // Siblings at this level (exclude the node we came from)
-        siblings.addAll(
-                p.children
-                        .findAll { it.id != levelNode.id }
-                        *.text
-        )
+if (parentLevels > 0) {
+    def ancestor = current.parent
+    for (int level = 1; level <= parentLevels; level++) {
+        if (!ancestor) break
+        def ancestorParent = ancestor.parent
+        if (!ancestorParent) break  // root has no siblings
 
-        levelNode = p
+        def children = ancestorParent.children
+        int idx = children.indexOf(ancestor)
+        if (idx == -1) {
+            // Should not happen but be defensive
+            ancestor = ancestorParent.parent
+            continue
+        }
+
+        // sibling before
+        if (idx > 0) {
+            def before = children[idx - 1]
+            siblings.add(before.text)
+            siblings.addAll(before.children*.text)
+        }
+
+        // sibling after
+        if (idx < children.size() - 1) {
+            def after = children[idx + 1]
+            siblings.add(after.text)
+            siblings.addAll(after.children*.text)
+        }
+
+        // Move up one level
+        ancestor = ancestorParent
     }
 }
 
@@ -82,7 +99,7 @@ def payload = [
 def jsonBody = JsonOutput.toJson(payload)
 
 /****************************************************
- * SEND TO LLM GATEWAY
+ * SEND TO LLM (Ollama chat API)
  ****************************************************/
 
 try {
@@ -139,12 +156,15 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
 ```
 """
 
-// Define request payload
+// Define request payload for Ollama
     def requestBody = [
-            model   : 'smollm:135m',
+            model   : 'gpt-oss:20b',
             stream  : false,
             messages: [
-                    [role: 'user', content: prompt.replaceFirst("|json|", jsonBody)]
+                    [
+                            role   : 'user',
+                            content: prompt.replace("|json|", jsonBody)
+                    ]
             ]
     ]
 
@@ -159,21 +179,12 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
     println "HTTP status: ${response.statusCode()}"
 
     if (response.statusCode() != 200) {
-
-        String errText = ""
-        try {
-            errText = conn.errorStream?.getText("UTF-8") ?: ""
-        }
-        catch (Exception ignored) {
-        }
-
         UITools.errorMessage(
-                "LLM script HTTP error ${status}.\n" +
-                        (errText ? "Details: ${errText}" : "")
+                "LLM script HTTP error ${response.statusCode()}.\n" +
+                        "Body: ${response.body()}"
         )
-    } else {
-
-
+    }
+    else {
         // Parse JSON response
         def json = mapper.readTree(response.body())
         println "\nRaw JSON:\n${mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json)}"
@@ -184,7 +195,7 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
         String composed = (assistantContent ?: "").trim()
 
         if (!composed) {
-            UITools.informationMessage("LLM script: Empty response from gateway.")
+            UITools.informationMessage("LLM script: Empty response from LLM.")
         } else {
             // Append as a single new child node under current
             def newNode = current.createChild(composed)
@@ -192,8 +203,6 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
             UITools.informationMessage("LLM script: New child node created.")
         }
     }
-
 } catch (Exception e) {
     UITools.errorMessage("LLM script error: ${e.class.simpleName}: ${e.message}")
 }
-
