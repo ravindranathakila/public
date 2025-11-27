@@ -1,7 +1,6 @@
 // @ExecutionModes({ON_SINGLE_NODE})
 
 @Grab('com.fasterxml.jackson.core:jackson-databind:2.18.0')
-import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 
 import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
 import org.freeplane.core.ui.components.UITools
 
 /****************************************************
@@ -19,7 +17,6 @@ import org.freeplane.core.ui.components.UITools
 // URL of your LLM gateway endpoint
 // The endpoint should accept POST JSON and return JSON:
 //   { "text": "<composed sentence or paragraph>" }
-String gatewayUrl = "http://localhost:8000/compose"
 
 // Always send full current branch? (root → ... → current)
 boolean includeBranch = true
@@ -141,6 +138,7 @@ GENERAL RULES
    - No bullet lists, no headings, no markdown, no quotation marks around the whole answer.
 
 4. Scope:
+   - Your answer should revolve around "current".
    - Aim for 1–3 sentences, unless the input is extremely short and only supports one.
    - If the current node looks like a heading, produce a sentence that elaborates or refines that heading using information from parent, branch, and siblings.
    - If the current node already looks like a full sentence, you may produce a more coherent or slightly more detailed restatement, again only using information from the provided texts.
@@ -157,21 +155,31 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
 """
 
 // Define request payload for Ollama
+
+//    def requestBody = [
+//            model   : 'llama3.2:3b',
+//            stream  : false,
+//            messages: [
+//                    [
+//                            role   : 'user',
+//                            content: prompt.replace("|json|", jsonBody)
+//                    ]
+//            ]
+//    ]
+
     def requestBody = [
-            model   : 'gpt-oss:20b',
-            stream  : false,
-            messages: [
-                    [
-                            role   : 'user',
-                            content: prompt.replace("|json|", jsonBody)
-                    ]
-            ]
+            model   : "gpt-5.1",
+            input  : prompt.replace("|json|", jsonBody)
     ]
 
 // Build and send request
     def request = HttpRequest.newBuilder()
-            .uri(URI.create('http://localhost:11434/api/chat'))
+//            .uri(URI.create("http://localhost:11434/api/chat"))
+            .uri(URI.create("https://api.openai.com/v1/responses"))
+//            .header('Content-Type', 'application/json')
             .header('Content-Type', 'application/json')
+//            .header('Authorization', "")
+            .header('Authorization', "Bearer ${System.getenv("OPENAI")}")
             .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(requestBody)))
             .build()
 
@@ -189,8 +197,9 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
         def json = mapper.readTree(response.body())
         println "\nRaw JSON:\n${mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json)}"
 
-        def assistantContent = json.path('message')?.path('content')?.asText(null)
-        println "\nAssistant:\n${assistantContent ?: '[no content field found]'}"
+
+//        def assistantContent = json.path('message')?.path('content')?.asText(null)
+        def assistantContent = json?.output[0].content[0].text.asText(null)
 
         String composed = (assistantContent ?: "").trim()
 
