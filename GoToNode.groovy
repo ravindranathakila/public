@@ -1,16 +1,20 @@
 // @ExecutionModes({ON_SINGLE_NODE})
 
 import org.freeplane.core.ui.components.UITools
+import org.freeplane.api.NodeRO
 import javax.swing.*
 import javax.swing.event.*
 import java.awt.*
 import java.awt.event.*
 
 // 1. Collect all nodes from the current map
-def map  = node.map
+
+NodeRO current = node
+
+def map = current.getMindMap()
 def root = map.root
 
-def nodes = []
+java.util.List<NodeRO> nodes = []
 root.findAll().each { n ->
     nodes << n
 }
@@ -18,7 +22,7 @@ root.findAll().each { n ->
 // Label function: what you see in the list
 def makeLabel = { n ->
     // "ID_123456789  |  Some node text"
-    "${n.id}  |  ${n.text ?: ''}"
+    " ${n.displayedText ?: ''} | ${n.id}"
 }
 
 // store (id, label, node) pairs
@@ -35,7 +39,8 @@ dialog.setLayout(new BorderLayout())
 dialog.setUndecorated(true)
 try {
     dialog.setOpacity(0.85f)  // may be ignored on some platforms
-} catch (Exception ignored) { }
+} catch (Exception ignored) {
+}
 dialog.setBackground(new Color(0, 0, 0, 80))
 // ----------------------------------------------
 
@@ -66,8 +71,8 @@ def refreshList = { String filterText ->
 
     int added = 0                          // NEW: limit to 5 items
     allEntries.each { e ->
-        if (ft.isEmpty() || e.label.split("\\|")[1].toLowerCase().contains(ft)) {
-            if (added < 5) {               // NEW: enforce max 5
+        if (ft.isEmpty() || e.label.split("\\|")[0].toLowerCase().contains(ft)) {
+            if (added < 10) {               // NEW: enforce max 5
                 listModel.addElement(e.label)
                 added++
             }
@@ -81,7 +86,7 @@ def refreshList = { String filterText ->
     }
 }
 
-// --- NEW: whenever the selection changes, preview that node ---
+// --- whenever the selection changes, preview that node ---
 list.addListSelectionListener({ e ->
     if (e.valueIsAdjusting) return
 
@@ -95,17 +100,17 @@ list.addListSelectionListener({ e ->
     }
 } as ListSelectionListener)
 
-// NEW: bind Cmd+Up / Cmd+Down on the text field (and list) to moveSelection
+// NEW: bind Cmd+I / Cmd+K on the text field (and list) to moveSelection
 int shortcutMask = Toolkit.defaultToolkit.menuShortcutKeyMaskEx   // Cmd on macOS
-KeyStroke ksUp   = KeyStroke.getKeyStroke(KeyEvent.VK_I,   shortcutMask)
+KeyStroke ksUp = KeyStroke.getKeyStroke(KeyEvent.VK_I, shortcutMask)
 KeyStroke ksDown = KeyStroke.getKeyStroke(KeyEvent.VK_K, shortcutMask)
 
 // On the text field
 InputMap fim = field.getInputMap(JComponent.WHEN_FOCUSED)
 ActionMap fam = field.getActionMap()
-fim.put(ksUp,   "cmd-up")
+fim.put(ksUp, "cmd-up")
 fim.put(ksDown, "cmd-down")
-fam.put("cmd-up",   new AbstractAction() {
+fam.put("cmd-up", new AbstractAction() {
     void actionPerformed(ActionEvent e) { moveSelection(-1) }
 })
 fam.put("cmd-down", new AbstractAction() {
@@ -115,9 +120,9 @@ fam.put("cmd-down", new AbstractAction() {
 // Also on the list itself (in case focus is there)
 InputMap lim = list.getInputMap(JComponent.WHEN_FOCUSED)
 ActionMap lam = list.getActionMap()
-lim.put(ksUp,   "cmd-up")
+lim.put(ksUp, "cmd-up")
 lim.put(ksDown, "cmd-down")
-lam.put("cmd-up",   new AbstractAction() {
+lam.put("cmd-up", new AbstractAction() {
     void actionPerformed(ActionEvent e) { moveSelection(-1) }
 })
 lam.put("cmd-down", new AbstractAction() {
@@ -130,7 +135,9 @@ refreshList("")
 // update list as the user types
 field.document.addDocumentListener(new DocumentListener() {
     void insertUpdate(DocumentEvent e) { refreshList(field.text) }
+
     void removeUpdate(DocumentEvent e) { refreshList(field.text) }
+
     void changedUpdate(DocumentEvent e) { refreshList(field.text) }
 })
 
@@ -179,7 +186,7 @@ UITools.addEscapeActionToDialog(dialog, new AbstractAction() {
 dialog.add(field, BorderLayout.NORTH)
 dialog.add(new JScrollPane(list), BorderLayout.CENTER)
 
-dialog.setSize(500, 400)
+dialog.setSize(800, 400)
 UITools.setDialogLocationRelativeTo(dialog, node.delegate)
 dialog.setVisible(true)  // blocks until dialog is closed
 

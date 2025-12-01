@@ -1,3 +1,4 @@
+
 // @ExecutionModes({ON_SINGLE_NODE})
 
 @Grab('com.fasterxml.jackson.core:jackson-databind:2.18.0')
@@ -14,9 +15,6 @@ import org.freeplane.core.ui.components.UITools
  * CONFIG SECTION
  ****************************************************/
 
-// URL of your LLM gateway endpoint
-// The endpoint should accept POST JSON and return JSON:
-//   { "text": "<composed sentence or paragraph>" }
 
 // Always send full current branch? (root → ... → current)
 boolean includeBranch = true
@@ -26,7 +24,7 @@ boolean includeParent = true
 
 // How many parents (ancestor levels) to walk up
 // 1 = parent only, 2 = parent + grandparent, etc.
-int parentLevels = 2
+int parentLevels = 10
 
 /****************************************************
  * HELPER FUNCTIONS
@@ -42,6 +40,7 @@ def current = node
 
 // Branch: path from root to current (if enabled)
 def branch = includeBranch ? current.pathToRoot*.text : []
+branch = branch.subList(1, branch.size())
 
 // Parent text (if enabled)
 def parentText = includeParent ? safeText(current.parent) : null
@@ -51,7 +50,7 @@ def parentText = includeParent ? safeText(current.parent) : null
 List<String> siblings = []
 
 if (parentLevels > 0) {
-    def ancestor = current.parent
+    def ancestor = current
     for (int level = 1; level <= parentLevels; level++) {
         if (!ancestor) break
         def ancestorParent = ancestor.parent
@@ -66,17 +65,15 @@ if (parentLevels > 0) {
         }
 
         // sibling before
-        if (idx > 0) {
-            def before = children[idx - 1]
-            siblings.add(before.text)
-            siblings.addAll(before.children*.text)
+        for (int x = idx - 1; x >= 0 ; x--) {
+            def before = children[x]
+            siblings.add(before.getBranchAsTextOutline())
         }
 
         // sibling after
-        if (idx < children.size() - 1) {
-            def after = children[idx + 1]
-            siblings.add(after.text)
-            siblings.addAll(after.children*.text)
+        for (int x = idx + 1; x < children.size() ; x++) {
+            def after = children[x]
+            siblings.add(after.getBranchAsTextOutline())
         }
 
         // Move up one level
@@ -95,6 +92,8 @@ def payload = [
 
 def jsonBody = JsonOutput.toJson(payload)
 
+//UITools.informationMessage(JsonOutput.prettyPrint(jsonBody))
+
 /****************************************************
  * SEND TO LLM (Ollama chat API)
  ****************************************************/
@@ -106,7 +105,7 @@ try {
     def mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
 
     def prompt = """
-You are a disciplined writing engine attached to a concept graph (a mind map).
+You are a disciplined mind attached to a concept graph (a mind map).
 
 You are given a JSON object with these fields:
 
@@ -121,33 +120,9 @@ Your job is to generate a SINGLE, well-formed text snippet that is suitable as t
 
 GENERAL RULES
 
-1. Treat all provided texts as the canonical knowledge you may rely on.
+1. Treat all provided texts as canonical knowledge you may rely on.
    - You may rephrase, combine, and clarify them.
-   - You may infer very generic relationships (e.g., “therefore”, “this means that”, “in summary”).
-   - You MUST NOT invent concrete new facts, mechanisms, numbers, or named entities that are not clearly implied by the given text.
-
-2. Your output must be self-contained:
-   - Do not mention “branch”, “current node”, “parent”, “siblings”, “this graph”, or any UI concepts.
-   - Do not refer to “the text above” or “the given context”.
-   - Write as if this node will be read on its own within a conceptual hierarchy.
-
-3. Style:
-   - Use clear, precise sentences.
-   - Prefer an analytic, slightly abstract tone, as if explaining ideas carefully.
-   - Avoid rhetorical questions unless they are already present in the context.
-   - No bullet lists, no headings, no markdown, no quotation marks around the whole answer.
-
-4. Scope:
-   - Your answer should revolve around "current".
-   - Aim for 1–3 sentences, unless the input is extremely short and only supports one.
-   - If the current node looks like a heading, produce a sentence that elaborates or refines that heading using information from parent, branch, and siblings.
-   - If the current node already looks like a full sentence, you may produce a more coherent or slightly more detailed restatement, again only using information from the provided texts.
-
-5. Safety and discipline:
-   - If the provided texts contain contradictions, produce a neutral synthesis or choose the more precise formulation; do not try to resolve contradictions with new invented information.
-   - If you are unsure of a detail, leave it out rather than guessing.
-
-Output ONLY the node text you propose. Do not include explanations, disclaimers, or any surrounding commentary.
+   - You should provide a concrete and final answer, if "current" is a question.
 
 ```json
 |json|
@@ -155,6 +130,14 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
 """
 
 // Define request payload for Ollama
+
+
+    // curl https://api.openai.com/v1/responses \
+    //  -H "Authorization: Bearer $OPENAI_API_KEY" \
+    //  -d '{
+    //    "model": "gpt-5.1",
+    //    "input": "Write a short bedtime story about a unicorn."
+    //  }'
 
 //    def requestBody = [
 //            model   : 'llama3.2:3b',
@@ -167,9 +150,14 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
 //            ]
 //    ]
 
+
+    def body = prompt.replace("|json|", jsonBody)
+
+//    UITools.informationMessage(body)
+
     def requestBody = [
             model   : "gpt-5.1",
-            input  : prompt.replace("|json|", jsonBody)
+            input  : body
     ]
 
 // Build and send request
@@ -209,7 +197,6 @@ Output ONLY the node text you propose. Do not include explanations, disclaimers,
             // Append as a single new child node under current
             def newNode = current.createChild(composed)
             newNode.folded = false
-            UITools.informationMessage("LLM script: New child node created.")
         }
     }
 } catch (Exception e) {

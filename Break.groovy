@@ -1,7 +1,5 @@
 // @ExecutionModes({ON_SINGLE_NODE})
 
-@Grab('com.fasterxml.jackson.core:jackson-databind:2.18.0')
-import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
@@ -15,15 +13,6 @@ import org.freeplane.core.ui.components.UITools
  * CONFIG SECTION
  ****************************************************/
 
-// Ollama chat API endpoint
-//String ollamaUrl = 'http://localhost:11434/api/chat'
-String openai = 'https://api.openai.com/v1/responses'
-
-// Model to use for decomposition
-//String modelName = 'phi4'
-//String modelName = 'llama3.2:3b'
-//String modelName = 'mistral'
-String modelName = 'gemma2:9b'
 
 // Maximum recommended depth of bullets (the LLM is instructed, not enforced)
 int suggestedMaxDepth = 3
@@ -130,17 +119,17 @@ Here is the text:
 
     def c = mapper.writeValueAsString(prompt)
     def requestBody = [
-            model          : "gpt-4o-2024-08-06",
-            input       : [
+            model: "gpt-4o-2024-08-06",
+            input: [
                     [
                             role   : "user",
                             content: c
                     ]
             ],
-            text: [
+            text : [
                     format: [
-                            name: "break",
-                            type: "json_schema",
+                            name  : "break",
+                            type  : "json_schema",
                             strict: true,
                             schema: jsonSchema
                     ]
@@ -149,8 +138,11 @@ Here is the text:
     ]
 
     def request = HttpRequest.newBuilder()
-            .uri(URI.create(openai))
+//            .uri(URI.create('http://localhost:11434/api/chat'))
+            .uri(URI.create('https://api.openai.com/v1/responses'))
+//            .header('Content-Type', 'application/json')
             .header('Content-Type', 'application/json')
+//            .header('Authorization', "")
             .header('Authorization', "Bearer ${System.getenv("OPENAI")}")
             .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(requestBody)))
             .build()
@@ -191,14 +183,10 @@ Here is the text:
         return
     }
 
-    // Optional: clear existing children before exploding
-    current.children.toList().each { it.delete() }
-
     // Create children recursively
-    createChildrenFromBullets(current, bullets)
-
-    UITools.informationMessage("Node exploded into bullet hierarchy.")
+    createChildrenFromBullets(current.parent, bullets)
 
 } catch (Exception e) {
     UITools.errorMessage("Explode script error: ${e.class.simpleName}: ${e.message}")
 }
+
